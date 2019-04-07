@@ -1,0 +1,74 @@
+<!--Header-->
+<div class="text-center">
+    <h3 class="white-text">Entrar</h3>
+    <hr class="hr-light">
+</div>
+
+<!-- Start Form login -->
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="md-form">
+        <!-- Email -->
+        <i class="fas fa-envelope prefix white-text"></i>
+        <input mdbInput type="email" class="form-control mb-4" formControlName="loginFormEmail">
+        <label for="loginFormEmail">Correo</label>
+        <small class="text-danger" *ngIf="loginForm.get('loginFormEmail').errors?.invalid">
+            Usuario Incorrecto.
+        </small>
+    </div>
+
+    <div class="md-form">
+        <!-- Password -->
+        <i class="fas fa-unlock prefix white-text"></i>
+        <input mdbInput type="password" class="form-control" formControlName="loginFormPassword">
+        <label for="loginFormPassword">Contraseña</label>
+        <small class="text-danger" *ngIf="loginForm.get('loginFormPassword').errors?.invalid">
+            Contraseña Incorrecta.
+        </small>
+        <div class="text-right">
+            <!-- Forgot password -->
+            <a href="">Olvidaste tu contraseña?</a>
+
+        </div>
+    </div>
+
+
+    <div class="text-center">
+
+        <!-- Sign up button -->
+        <button mdbBtn class="btn btn-block waves-light ripe-malinka-gradient" type="submit"
+            [disabled]="!loginForm.valid" mdbWavesEffect>Ingresar</button>
+        <hr class="hr-light mb-3 mt-4">
+
+        <!-- Social Sign Up -->
+        <div class="row mt-2 mb-3 d-flex justify-content-center">
+            <!--Facebook-->
+            <a class="fa-lg p-2 m-2 fb-ic">
+                <mdb-icon fab icon="facebook" size="lg" class="white-text"></mdb-icon>
+            </a>
+            <!--Twitter-->
+            <a class="fa-lg p-2 m-2 tw-ic">
+                <mdb-icon fab icon="instagram" size="lg" class="white-text"></mdb-icon>
+            </a>
+            <!--Google +-->
+            <a class="fa-lg p-2 m-2 gplus-ic">
+                <mdb-icon fab fab icon="twitter" size="lg" class="white-text"></mdb-icon>
+            </a>
+        </div>
+
+
+        <hr class="hr-light mb-3 mt-4">
+
+        <div class="alert alert-light">
+            <p>¿No tienes una cuenta?
+                <a href="#" routerLink="/register">Regístrate</a>
+            </p>
+        </div>
+
+    </div>
+
+
+
+
+</form>
+<!-- End Form login -->

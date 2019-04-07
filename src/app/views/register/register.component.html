@@ -1,0 +1,106 @@
+<!--Header-->
+<div class="text-center">
+    <h3 class="white-text">Regístrate</h3>
+    <hr class="hr-light">
+</div>
+
+<!-- Start Form register -->
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <!-- Name -->
+    <div class="md-form">
+        <i class="fas fa-user prefix white-text"></i>
+        <input mdbInput type="text" class="form-control" formControlName="registerFormName">
+        <label for="registerFormName">Nombre</label>
+    </div>
+
+    <!-- E-mail -->
+    <div class="md-form">
+        <i class="fas fa-envelope prefix white-text"></i>
+        <input mdbInput type="email" class="form-control" formControlName="registerFormEmail">
+        <label for="registerFormEmail">Correo</label>
+
+        <small class="form-text text-muted text-danger"
+            *ngIf="!registerForm.controls.registerFormEmail.valid && registerForm.controls.registerFormEmail.touched && !registerForm.controls.registerFormEmail.errors.emailInUsed">
+            Por favor introduzca una dirección de correo.
+        </small>
+
+        <div class="form-text" role="alert"
+            *ngIf="!registerForm.controls.registerFormEmail.valid && registerForm.controls.registerFormEmail.errors.emailInUsed">
+
+            <div class="alert animated wobble z-depth-5 dusty-grass-gradient ">
+                <p class="text-black">
+                    <mdb-icon fas icon="times" class="text-danger mr-1"></mdb-icon>
+                    {{ registerForm.controls.registerFormEmail.errors.emailInUsed }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div [formGroup]="passwordForm">
+
+        <!-- Password -->
+        <div class="md-form">
+            <i class="fas fa-unlock prefix white-text"></i>
+            <input mdbInput type="password" class="form-control" aria-describedby="helpPassword"
+                formControlName="registerFormPassword">
+            <label for="registerFormPassword">Contraseña</label>
+
+            <small id="helpPassword" class="form-text text-muted">
+                Al menos 8 caracteres.
+            </small>
+        </div>
+
+        <div class="md-form">
+            <!-- Re Password -->
+            <i class="fas fa-lock prefix white-text"></i>
+            <input mdbInput type="password" class="form-control" aria-describedby="helpPassword"
+                formControlName="registerFormConfirmPassword">
+            <label for="registerFormConfirmPassword">Confirmar contraseña</label>
+
+            <small class="form-text text-danger"
+                *ngIf="passwordForm.controls.registerFormConfirmPassword.errors?.required && passwordForm.controls.registerFormConfirmPassword.touched">
+                Confirma la contraseña.
+            </small>
+            <small class="form-text text-danger" *ngIf="passwordForm.errors?.doesMatchPassword">
+                Las contraseñas no coinciden.
+            </small>
+        </div>
+    </div>
+
+
+    <div class="text-center">
+        <!-- Sign up button -->
+        <button mdbBtn class="btn btn-block waves-light ripe-malinka-gradient" type="submit"
+            [disabled]="!registerForm.valid" mdbWavesEffect>Enviar</button>
+        <hr class="hr-light mb-3 mt-4">
+
+        <!-- Social Sign Up -->
+        <div class="row mt-2 mb-3 d-flex justify-content-center">
+            <!--Facebook-->
+            <a class="fa-lg p-2 m-2 fb-ic">
+                <mdb-icon fab icon="facebook" size="lg" class="white-text"></mdb-icon>
+            </a>
+            <!--Twitter-->
+            <a class="fa-lg p-2 m-2 tw-ic">
+                <mdb-icon fab icon="instagram" size="lg" class="white-text"></mdb-icon>
+            </a>
+            <!--Google +-->
+            <a class="fa-lg p-2 m-2 gplus-ic">
+                <mdb-icon fab fab icon="twitter" size="lg" class="white-text"></mdb-icon>
+            </a>
+        </div>
+
+        <hr class="hr-light mb-3 mt-4">
+
+        <div class="alert alert-light">
+            <p>¿Tienes una cuenta?
+                <a href="#" routerLink="/login">Entrar</a>
+            </p>
+        </div>
+    </div>
+
+</form>
+<!-- End Form register -->

@@ -1,0 +1,28 @@
+input.ng-invalid.ng-touched {
+    border-left: 1px solid #a94442;
+}
+
+
+input.ng-valid.ng-dirty {
+    border-left: 1px solid #42A948;
+}
+
+textarea:focus, input:focus {
+    color: #ffffff;
+    padding-left: 10px !important;
+}
+
+input, select, textarea{
+    color: #ffffff;
+    padding-left: 10px !important;
+}
+
+.md-form .prefix {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+  
+  
+.md-form label {
+color: #ffffff;
+}

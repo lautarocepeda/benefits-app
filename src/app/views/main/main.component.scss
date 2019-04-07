@@ -1,0 +1,51 @@
+.intro-header {
+  height: unset !important;
+}
+
+
+.intro-2 {
+  background: url("/assets/main-component-background2.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+
+.view {
+  height: 100vh !important;
+}
+
+
+
+.rgba-gradient .full-bg-img {
+    background: linear-gradient(90deg,rgba(255, 255, 255, 0.336), rgba(255, 0, 76, 0.562) 100%);
+}
+
+
+.card {
+  background-color: rgba(255, 255, 255, 0.192); //rgba(255, 255, 255, 0.192);
+}
+
+
+.md-form .prefix {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+
+.md-form label {
+  color: #ffffff;
+}
+
+
+h6 {
+  line-height: 1.7;
+}
+
+
+@media (max-width: 740px) {
+  .full-height,
+  .full-height body,
+  .full-height header,
+  .full-height header .view {
+    height: 1040px;
+  }
+}

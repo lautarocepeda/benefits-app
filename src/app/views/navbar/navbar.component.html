@@ -1,0 +1,97 @@
+<!--Main Navigation-->
+<header>
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed animated slideInLeft">
+
+        <a class="logo-wrapper waves-effect">
+            <img src="http://clipart-library.com/images/5TRrpRAGc.png" class="img-fluid" alt="">
+        </a>
+
+        <div class="list-group list-group-flush">
+
+            <a routerLink="/home" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="home" class="mr-3" size="lg"></mdb-icon>
+                HOME
+            </a>
+            <a routerLink="/sd" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="ticket-alt" class="mr-3" size="lg"></mdb-icon>
+                BENEFICIOS
+            </a>
+            <a routerLink="/sd" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="map-marker-alt" class="mr-3" size="lg"></mdb-icon>
+                LOCALES
+            </a>
+            <a routerLink="/sd" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="utensils" class="mr-3" size="lg"></mdb-icon>
+                MENU
+            </a>
+            <a routerLink="profile" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="user" class="mr-3" size="lg"></mdb-icon>
+                MI PERFIL
+            </a>
+            <a routerLink="/sd" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="heart" class="mr-3" size="lg"></mdb-icon>
+                MIS CUPONES
+            </a>
+
+        </div>
+
+        <br>
+
+        <!--Facebook-->
+        <button type="button" class="btn bg-info btn-rounded waves-effect">
+            <mdb-icon fab icon="facebook-f" size="lg"></mdb-icon>
+        </button>
+
+        <!--Instagram-->
+        <button type="button" class="btn mean-fruit-gradient btn-rounded waves-effect">
+            <mdb-icon fab icon="instagram" size="lg"></mdb-icon>
+        </button>
+
+
+    </div>
+    <!-- Sidebar -->
+
+
+    <!-- USER AUHTENTICATED -->
+    <!--Navbar-->
+    <mdb-navbar [containerInside]="false"
+        SideClass="navbar navbar-expand-lg navbar-light white z-depth-2 cloudy-knoxville-gradient animated slideInDown"
+        *ngIf="userIsLoggin">
+
+        <!-- Navbar brand -->
+        <logo class="ml-3">
+            <a class="navbar-brand">
+                <strong class="blue-text">APP</strong>
+            </a>
+        </logo>
+
+        <!-- Collapsible content -->
+        <links>
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link">Empty Link</a>
+                </li>
+            </ul>
+            <!-- Links -->
+
+            <!-- Search form -->
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a href="#" (click)="logout()" class="nav-link" mdbWavesEffect>
+                        <mdb-icon fas icon="sign-out-alt" size="lg"></mdb-icon> Desconectar
+                    </a>
+                </li>
+            </ul>
+        </links>
+        <!-- Collapsible content -->
+
+    </mdb-navbar>
+    <!--/.Navbar-->
+    <!-- END USER AHUTENTICATED -->
+
+
+</header>
+<!--Main Navigation-->
