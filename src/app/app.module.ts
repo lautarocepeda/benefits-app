@@ -19,8 +19,6 @@ import { HttpConfigInterceptor } from './interceptor/httpconfig.interceptor';
 
 //Spinner Loading
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { LoadingSpinnerComponent } from './views/loading-spinner/loading-spinner.component';
-
 
 //Views
 import { AppComponent } from './app.component';
@@ -45,7 +43,6 @@ import { MainComponent } from './views/main/main.component';
     LoginComponent,
     RegisterComponent,
     MainComponent,
-    LoadingSpinnerComponent,
     ProfileComponent
   ],
   imports: [

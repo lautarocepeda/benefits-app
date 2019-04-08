@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Register } from '../models/Register';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BackendApiService {
+
 
     private apiURL: string = "http://localhost:4000";
 
@@ -17,7 +19,8 @@ export class BackendApiService {
     };
 
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {
+    }
 
     //Register user
     public signup(user: Register) {
@@ -27,6 +30,11 @@ export class BackendApiService {
 
     public getProfile() {
         return this.httpClient.get(`${this.apiURL}/api/profile`, this.httpOptions);
+    }
+
+
+    public uploadImage(image: File): Observable<any> {
+        return this.httpClient.post(`${this.apiURL}/api/upload`, image);
     }
 
 
