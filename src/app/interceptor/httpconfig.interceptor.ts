@@ -19,10 +19,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
 
 
-    constructor(private spinner: NgxSpinnerService, private AuthService: AuthenticationService) {
-
-        console.log(this.AuthService.currentUserValue);
-    }
+    constructor(private spinner: NgxSpinnerService, private AuthService: AuthenticationService) {}
 
     //function which will be called for all http calls
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -31,11 +28,10 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         let currentUser = this.AuthService.currentUserValue;
 
 
-        if (currentUser && currentUser.token) {
-            console.log("INTERCEPTOR TOKEN");
+        if (currentUser) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${currentUser.token}`
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
                 }
             });
         }

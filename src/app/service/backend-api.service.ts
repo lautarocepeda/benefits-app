@@ -34,7 +34,11 @@ export class BackendApiService {
 
 
     public uploadImage(image: File): Observable<any> {
-        return this.httpClient.post(`${this.apiURL}/api/upload`, image);
+        const formData = new FormData();
+        formData.append('imageInput', image);
+        formData.append('token', localStorage.getItem('access_token'));
+
+        return this.httpClient.post(`${this.apiURL}/api/upload`, formData);
     }
 
 

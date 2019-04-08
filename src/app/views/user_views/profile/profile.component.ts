@@ -22,7 +22,8 @@ export class ProfileComponent implements OnInit {
         id: null,
         name: null,
         email: null,
-        birthday: null
+        birthday: null,
+        urlImg: '',
     };
 
     constructor(private BackendApi: BackendApiService) {
@@ -31,7 +32,8 @@ export class ProfileComponent implements OnInit {
                 id: response.id,
                 name: response.name,
                 email: response.email,
-                birthday: response.birthday || null
+                birthday: response.birthday,
+                urlImg: response.urlimg || '/assets/profileImg_default.jpg'
             }
         });
     }
@@ -40,10 +42,6 @@ export class ProfileComponent implements OnInit {
     processFile(imgInput: any) {
         const file: File = imgInput.files[0];
         const reader = new FileReader();
-
-
-        console.log(file);
-
 
         reader.addEventListener('load', (event:any) => {
 
@@ -54,7 +52,7 @@ export class ProfileComponent implements OnInit {
                     console.log(res);
                 },
                 (err) => {
-
+                    console.log(err);
                 }
             )
 

@@ -6,8 +6,8 @@
         <div class="col-sm-12">
             <div class="zoom img-avatar text-center">
                 <a class="media waves-light">
-                    <div class="avatar mx-auto img-fluid rounded-circle">
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img(31).jpg"
+                    <div class="avatar mx-auto img-fluid rounded-circle z-depth-">
+                        <img [src]="userData.urlImg"
                             class="rounded-circle hoverable userPhoto" mdbTooltip="Cambiar foto de perfil"
                             placement="bottom" (click)="basicModal.show()">
                     </div>
@@ -19,7 +19,7 @@
 
             <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex align-items-center">
-                    <mdb-icon far icon="user" class="text-info" size="2x"></mdb-icon>
+                    <mdb-icon far icon="user" class="text-success" size="2x"></mdb-icon>
                     <h3>
                         <span class="badge badge-default badge-pill ml-5">
                             {{ userData.name }}
@@ -32,6 +32,15 @@
                     <h3>
                         <span class="badge badge-default badge-pill ml-5">
                             {{ userData.email }}
+                        </span>
+                    </h3>
+                </li>
+
+                <li class="list-group-item d-flex align-items-center">
+                    <mdb-icon fas icon="birthday-cake" class="text-danger" size="2x"></mdb-icon>
+                    <h3>
+                        <span class="badge badge-default badge-pill ml-5">
+                            {{ userData.birthday | date }}
                         </span>
                     </h3>
                 </li>
@@ -71,7 +80,7 @@
                                 Selecionar imagen...
                             </a>
                         </label>
-                        <input #imageInput id="file-input" type="file" accept="image/*"
+                        <input #imageInput name="imageInput" id="file-input" type="file" accept="image/*"
                             (change)="processFile(imageInput)">
 
                     </div>
