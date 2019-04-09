@@ -19,8 +19,7 @@ export class BackendApiService {
     };
 
 
-    constructor(private httpClient: HttpClient) {
-    }
+    constructor(private httpClient: HttpClient) {}
 
     //Register user
     public signup(user: Register) {
@@ -40,9 +39,4 @@ export class BackendApiService {
 
         return this.httpClient.post(`${this.apiURL}/api/upload`, formData);
     }
-
-
-
-
-
 }

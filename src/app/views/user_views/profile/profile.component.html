@@ -7,9 +7,8 @@
             <div class="zoom img-avatar text-center">
                 <a class="media waves-light">
                     <div class="avatar mx-auto img-fluid rounded-circle z-depth-">
-                        <img [src]="userData.urlImg"
-                            class="rounded-circle hoverable userPhoto" mdbTooltip="Cambiar foto de perfil"
-                            placement="bottom" (click)="basicModal.show()">
+                        <img [src]="(userData.urlImg)" class="rounded-circle hoverable userPhoto"
+                            mdbTooltip="Cambiar foto de perfil" placement="bottom" (click)="basicModal.show()">
                     </div>
                 </a>
             </div>
@@ -70,18 +69,39 @@
 
             <div class="modal-body">
 
-                <form (ngSubmit)="onSubmit()">
+                <form>
+
 
                     <div class="image-upload text-center">
 
                         <label for="file-input">
+
                             <a type="button" class="btn btn-pink waves-light" mdbWavesEffect>
                                 <mdb-icon fas icon="upload" class="mr-1"></mdb-icon>
                                 Selecionar imagen...
                             </a>
+
                         </label>
-                        <input #imageInput name="imageInput" id="file-input" type="file" accept="image/*"
-                            (change)="processFile(imageInput)">
+
+                        <input #imageInput id="file-input" type="file" (change)="processFile(imageInput)"
+                            accept="image/*" required>
+
+                        <div *ngIf="selectedFile" class="img-preview-container">
+
+                            <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+                                <div class="img-spinning-circle"></div>
+                            </div>
+
+                            <div *ngIf="selectedFile.status === 'ok'" class="alert alert-info" role="alert">
+                                Imagen subida:
+                                <img class="img-fluid" [src]="this.selectedFile.src" />
+                            </div>
+
+                            <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded
+                                Succesfuly!</div>
+                            <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!
+                            </div>
+                        </div>
 
                     </div>
 
@@ -89,14 +109,6 @@
 
             </div>
 
-
-
-
-            <div class="modal-footer">
-                <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
-                    (click)="basicModal.hide()" mdbWavesEffect>Close</button>
-                <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
-            </div>
 
         </div>
     </div>
