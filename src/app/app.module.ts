@@ -23,7 +23,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 //Views
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './views/navbar/navbar.component';
-import { CarrouselComponent } from './views/carrousel/carrousel.component';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
@@ -38,7 +37,6 @@ import { MainComponent } from './views/main/main.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    CarrouselComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,

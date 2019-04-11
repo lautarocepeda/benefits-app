@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Register } from '../models/Register';
 import { Observable } from 'rxjs';
+import { UpdateUser } from '../interfaces/update-user';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BackendApiService {
-
 
     private apiURL: string = "http://localhost:4000";
 
@@ -27,11 +27,6 @@ export class BackendApiService {
     }
 
 
-    public getProfile() {
-        return this.httpClient.get(`${this.apiURL}/api/profile`, this.httpOptions);
-    }
-
-
     public uploadImage(image: File): Observable<any> {
         const formData = new FormData();
         formData.append('imageInput', image);
@@ -39,4 +34,15 @@ export class BackendApiService {
 
         return this.httpClient.post(`${this.apiURL}/api/upload`, formData);
     }
+
+
+    public updateProfile(data: UpdateUser) {
+        return this.httpClient.post(`${this.apiURL}/api/updateProfile`, data);
+    }
+
+
+    public getProfile() {
+        return this.httpClient.get(`${this.apiURL}/api/profile`, this.httpOptions);
+    }
+
 }

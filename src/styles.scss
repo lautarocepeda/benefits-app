@@ -70,9 +70,20 @@
 
 /* END GRADIENTS */
 
+/* You can add global styles to this file, and also import other style files */
 
-/* You can add global styles to this file, and also import other style files */
-/* You can add global styles to this file, and also import other style files */
+pre {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: auto;
+	overflow-y: hidden;
+	font-size: 12px;
+	line-height: 20px;
+	background: #efefefb9;
+	border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
 body {
     background-color: #eee;
   }

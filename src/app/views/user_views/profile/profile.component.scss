@@ -5,14 +5,17 @@
     max-height: 250px;
 }
 
+
 .userPhoto:hover {
     opacity: 0.4;
 }
+
 
 .image-upload > input
 {
     display: none;
 }
+
 
 .img-loading-overlay {
     background-color: black;
@@ -36,6 +39,7 @@
     right: 0;
 }
 
+
 .img-spinning-circle:after {
     content: " ";
     display: block;
@@ -58,6 +62,7 @@
     }
 }
 
+
 .btn-bwm {
     background-color: #000;
     border-color: #fff;
@@ -69,4 +74,13 @@
         border-color: #fff !important;
         background-color: #000 !important;
     }
+}
+
+input.ng-invalid.ng-touched {
+    border-left: 1px solid #a94442;
+}
+
+
+input.ng-valid.ng-dirty {
+    border-left: 1px solid #42A948;
 }

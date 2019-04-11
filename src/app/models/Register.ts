@@ -1,12 +1,12 @@
 export class Register {
-    firstName: string;
+    name: string;
     email: string;
     password: string;
     confirmPassword: string;
 
 
-    constructor(firstName: string, email: string, password: string, confirmPassword: string) {
-        this.firstName = firstName;
+    constructor(name: string, email: string, password: string, confirmPassword: string) {
+        this.name = name;
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
