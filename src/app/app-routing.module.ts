@@ -10,7 +10,6 @@ import { RegisterComponent } from './views/register/register.component';
 import { ProfileComponent } from './views/user_views/profile/profile.component';
 import { BenefitComponent } from './views/admin/benefit/benefit.component';
 import { Role } from './models/role';
-s
 
 const routes: Routes = [
 
