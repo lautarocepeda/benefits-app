@@ -31,6 +31,7 @@ import { ProfileComponent } from './views/user_views/profile/profile.component';
 //Guards
 import { AuthorizatedGuard } from './guards/authorizated.guard';
 import { MainComponent } from './views/main/main.component';
+import { BenefitComponent } from './views/admin/benefit/benefit.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MainComponent } from './views/main/main.component';
     LoginComponent,
     RegisterComponent,
     MainComponent,
-    ProfileComponent
+    ProfileComponent,
+    BenefitComponent
   ],
   imports: [
     BrowserModule,

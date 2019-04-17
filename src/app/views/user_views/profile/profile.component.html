@@ -3,13 +3,14 @@
 
         <div class="col-sm-12">
 
-
-            <div #alert class="alert alert-success alert-dismissible fade hide" role="alert">
+            <!-- Alert Mode Edit -->
+            <div #alert class="alert alert-dismissible fade hide" role="alert">
                 <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <strong>Perfil actualizado correctamente!</strong>
+                <strong #alertMessage></strong>
             </div>
+            <!--  End - Alert Mode Edit -->
 
             <div class="zoom img-avatar text-center">
                 <a class="media waves-light">
@@ -167,10 +168,13 @@
 
                 </div>
 
+
+
                 <ul class="list-group list-group-flush" *ngIf="modeEdit">
 
                     <li class="list-group-item d-flex justify-content-center">
-                        <button type="submit" class="btn btn-outline-success btn-sm waves-effect">
+                        <button type="submit" class="btn btn-outline-success btn-sm waves-effect"
+                            [disabled]="!passwordForm.valid || !editForm.valid">
                             <mdb-icon fas icon="edit" class="mr-2" aria-hidden="true"></mdb-icon>Editar
                         </button>
                         <button type="button" class="btn btn-outline-danger btn-sm waves-effect"
@@ -182,6 +186,7 @@
                 </ul>
 
             </form>
+            <!-- End - Edit User Form -->
 
 
 

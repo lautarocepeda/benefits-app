@@ -1,4 +1,5 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { Role } from '../models/role';
 
 export interface User {
     id: number;
@@ -6,4 +7,6 @@ export interface User {
     email: string;
     birthday: number;
     urlImg: SafeResourceUrl;
+    role: Role;
+    token: string;
 }

@@ -28,10 +28,10 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         let currentUser = this.AuthService.currentUserValue;
 
 
-        if (currentUser) {
+        if (currentUser && currentUser.token) {
             request = request.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                    Authorization: `Bearer ${currentUser.token}`
                 }
             });
         }

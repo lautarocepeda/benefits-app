@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import { BackendApiService } from 'src/app/service/backend-api.service';
-import { User } from 'src/app/interfaces/User';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterValidator } from '../../register/register.validator';
 import { ImageSnippet } from 'src/app/models/image-snippet';
 import { UpdateUser } from 'src/app/interfaces/update-user';
+
 
 
 @Component({
@@ -15,8 +15,8 @@ import { UpdateUser } from 'src/app/interfaces/update-user';
 })
 export class ProfileComponent implements OnInit {
 
-
     @ViewChild('alert') alert: ElementRef;
+    @ViewChild('alertMessage') alertMessage: ElementRef;
 
     private modeEdit: boolean = false;
 
@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
 
     // information user
-    protected userData: User = {
+    protected userData: any = {
         id: null,
         name: null,
         email: null,
@@ -62,8 +62,8 @@ export class ProfileComponent implements OnInit {
 
     private validateEditForm() {
         this.passwordForm = this.rf.group({
-            registerFormPassword: ['', [Validators.required, Validators.minLength(8)]],
-            registerFormConfirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+            registerFormPassword: ['', [Validators.minLength(8)]],
+            registerFormConfirmPassword: ['', [Validators.minLength(8)]],
         }, {
                 validator: RegisterValidator.validate.bind(this)
             });
@@ -91,7 +91,7 @@ export class ProfileComponent implements OnInit {
             name: this.editForm.get('editFormName').value,
             email: this.editForm.get('editFormEmail').value,
             birthday: this.editForm.get('editFormBirthday').value,
-            password: '',
+            password: this.passwordForm.get('registerFormConfirmPassword').value,
         };
 
         this.updateProfile(userUpdate);
@@ -99,13 +99,32 @@ export class ProfileComponent implements OnInit {
     };
 
 
-    
+    // show result of edit profile
+    private showAlertModeEdit(element: ElementRef, type: string, content: string) {
+        this.renderer.addClass(element, 'show');
+
+        // clear classes
+        this.renderer.removeClass(element, 'alert-success');
+        this.renderer.removeClass(element, 'alert-danger');
+
+        switch (type) {
+            case 'error':
+                this.renderer.addClass(element, 'alert-danger');
+                break;
+
+            case 'success':
+                this.renderer.addClass(element, 'alert-success');
+                break;
+
+            case 'warning': this.renderer.addClass(element, 'alert-warning');
+                break;
+        }
+
+        // add message to html
+        this.renderer.setProperty(this.alertMessage.nativeElement, 'innerHTML', content);
+    }
 
 
-
-    
-    
-    // REFATORIZAR LOS ALERTS, CREAR FUNCIONES PARA MOSTRAR ALERT...
     private updateProfile(user: UpdateUser) {
         this.BackendApi.updateProfile(user).subscribe(
             (res) => {
@@ -116,20 +135,16 @@ export class ProfileComponent implements OnInit {
                 this.modeEdit = false;
 
                 // show alert success
-                this.renderer.addClass(this.alert.nativeElement, 'show');
+                this.showAlertModeEdit(this.alert.nativeElement, 'success', 'Perfil actualizado correctamente!')
             },
             (err) => {
                 console.error(err);
 
-                if(err.error.status ===  '23000') {
-                    this.renderer.setProperty(this.alert.nativeElement, 'innerHTML', 'El correo electrónico ingresado ya se encuentra registrado.');
+                if (err.error.status === '23000') {
+                    this.showAlertModeEdit(this.alert.nativeElement, 'error', 'El correo electrónico ingresado ya se encuentra registrado.');
                 } else {
-                    this.renderer.setProperty(this.alert.nativeElement, 'innerHTML', 'Ocurrió un error al actualizar tu perfil.');
+                    this.showAlertModeEdit(this.alert.nativeElement, 'error', 'Ocurrió un error al actualizar tu perfil.');
                 }
-
-                // show alert danger to informate error
-                this.renderer.addClass(this.alert.nativeElement, 'show');
-                this.renderer.addClass(this.alert.nativeElement, 'alert-danger');
             });
     }
 

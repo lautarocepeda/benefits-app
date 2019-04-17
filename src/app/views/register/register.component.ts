@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegisterValidator } from './register.validator';
-import { Register } from '../../models/Register';
-import { Login } from '../../models/Login';
+import { Register } from '../../models/register';
+import { Login } from '../../models/login';
 import { BackendApiService } from '../../service/backend-api.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../service/authentication.service';
