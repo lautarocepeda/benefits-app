@@ -164,7 +164,7 @@ export class ProfileComponent implements OnInit {
                 birthday: response.user.birthday,
                 urlImg: this._sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,'
                     + response.baseImg) || '/assets/profileImg_default.jpg'
-            }
+            };
         });
     }
 
@@ -191,7 +191,7 @@ export class ProfileComponent implements OnInit {
                     this.onError();
                     console.error(err);
                 }
-            )
+            );
         });
 
         reader.readAsDataURL(file);
