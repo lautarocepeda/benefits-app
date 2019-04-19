@@ -25,7 +25,8 @@
                 <mdb-icon fas icon="utensils" class="mr-3" size="lg"></mdb-icon>
                 MENU
             </a>
-            <a routerLink="profile" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+            <a routerLink="profile" routerLinkActive="active"
+                class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="user" class="mr-3" size="lg"></mdb-icon>
                 MI PERFIL
             </a>
@@ -71,9 +72,14 @@
 
             <!-- Links -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link">Empty Link</a>
-                </li>
+                <div class="navbar-nav mr-auto" *ngIf="this.userIsLoggin.role === 'Admin'">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="administration/benefit" routerLinkActive="active">Beneficios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="administration/benefit/add" routerLinkActive="active">Agregar Beneficio</a>
+                    </li>
+                </div>
             </ul>
             <!-- Links -->
 

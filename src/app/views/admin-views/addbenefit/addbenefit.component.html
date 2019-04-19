@@ -1,0 +1,147 @@
+<div class="row justify-content-center mt-5">
+
+    <!-- Form Benefit -->
+    <div class="col-6">
+        <div class="jumbotron">
+
+            <section class="text-center">
+                <h3>¡Beneficio!</h3>
+                <hr>
+            </section>
+
+            <form [formGroup]="addBenefitForm" (ngSubmit)="onSubmit()">
+
+                <div class="image-upload text-center">
+                    <label for="inputImg">
+
+                        <div class="view overlay">
+                            <figure class="figure">
+                                <img src="assets/admin/default-benefit.jpg"
+                                    class="figure-img img-fluid img-thumbnail z-depth-1 waves-light benefitImg"
+                                    alt="Benefit Image">
+                                <figcaption class="figure-caption">Imagen del beneficio</figcaption>
+                            </figure>
+
+                            <a>
+                                <div class="mask waves-effect waves-light rgba-white-slight" mdbWavesEffect></div>
+                            </a>
+                        </div>
+
+                    </label>
+                    <input #imageBenefit type="file" name="imgBenefit" id="inputImg" accept="image/*">
+                </div>
+
+                <div class="md-form md-outline">
+                    <mdb-icon fas icon="gift" class="text-warning" size="lg"></mdb-icon>
+                    <input type="text" id="titleBenefit" class="form-control" formControlName="title" mdbInput>
+                    <label for="titleBenefit">Nombre Beneficio</label>
+                </div>
+
+
+                <div class="md-form md-outline">
+                    <mdb-icon fas icon="pencil-alt text-primary" size="lg"></mdb-icon>
+                    <textarea type="text" id="description" class="md-textarea md-textarea-auto form-control"
+                        formControlName="description" rows="2" style="height: 500px;" mdbInput></textarea>
+                    <label for="description">Descripción</label>
+                </div>
+
+                <div class="md-form md-outline">
+                    <mdb-icon fas icon="dollar-sign" class="text-success" size="lg"></mdb-icon>
+                    <input type="number" id="priceBenefit" class="form-control" formControlName="price" mdbInput>
+                    <label for="priceBenefit">Precio</label>
+                </div>
+
+
+                <div class="md-form">
+                    <!-- Date -->
+                    <mdb-icon far icon="calendar-alt" class="text-danger mr-4"></mdb-icon>
+                    <input mdbInput class="form-control" type="date" aria-describedby="helpBlockExpiration"
+                        formControlName="expiration">
+                    <small id="helpBlockExpiration" class="form-text text-muted mb-4">
+                        Vencimiento del beneficio.
+                    </small>
+                </div>
+
+
+                <div class="md-form">
+                    <hr class="hr-light">
+                    <button mdbBtn type="submit" gradient="aqua" block="true" mdbWavesEffect>Agregar Beneficio</button>
+                </div>
+
+                <hr>
+                <pre>Valor del formulario: {{ addBenefitForm.value | json }}</pre>
+                <pre>Status del formulario: {{ addBenefitForm.status | json }}</pre>
+                <hr>
+                <pre>{{ benefitData | json }}</pre>
+
+            </form>
+
+        </div>
+    </div>
+    <!-- End - Form Benefit -->
+
+    <!-- Preview Benefit -->
+    <div class="col-6">
+        <div class="jumbotron sunny-morning-gradient">
+
+            <section class="text-center text-white">
+                <h3>Visualización</h3>
+                <hr>
+            </section>
+
+            <div class="row justify-content-center">
+                <div class="col col-lg-8 col-md-8">
+                    <mdb-card>
+
+
+                        <mdb-card-img src="assets/admin/default-benefit.jpg" alt="Card image cap"></mdb-card-img>
+
+                        <mdb-card-body>
+                            <mdb-card-title>
+                                <h4> {{ addBenefitForm.controls.title.value }} </h4>
+                                <hr>
+                            </mdb-card-title>
+
+
+                            <mdb-card-text>
+                                {{ addBenefitForm.controls.description.value }}
+                            </mdb-card-text>
+
+
+                            <div class="text-center mb-3">
+                                <button mdbBtn type="button" color="info" outline="true" block="true" size="lg" mdbWavesEffect> Canjear! </button>
+                                <hr>
+                            </div>
+
+
+
+                            <div class="d-flex justify-content-center text-info">
+                                <h5 class="waves-light text-success" mdbWavesEffect>Precio
+                                    <span>
+                                        <mdb-icon fas icon="chevron-right" size="lg"></mdb-icon>
+                                        $ {{ addBenefitForm.controls.price.value}}
+                                    </span>
+                                    <hr>
+                                </h5>
+                            </div>
+
+                            <div class="d-flex justify-content-end text-info">
+                                <strong class="waves-light text-danger" mdbWavesEffect>Vencimiento
+                                    <span>
+                                        <mdb-icon fas icon="chevron-right" size="sm"></mdb-icon>
+                                        {{ addBenefitForm.controls.expiration.value | date }}
+                                    </span>
+                                </strong>
+                            </div>
+
+                        </mdb-card-body>
+                    </mdb-card>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- End - Preview Benefit -->
+</div>

@@ -27,15 +27,6 @@ export class BackendApiService {
     }
 
 
-    public uploadImage(image: File): Observable<any> {
-        const formData = new FormData();
-        formData.append('imageInput', image);
-        formData.append('token', localStorage.getItem('access_token'));
-
-        return this.httpClient.post(`${this.apiURL}/api/upload`, formData);
-    }
-
-
     public updateProfile(data: UpdateUser) {
         return this.httpClient.post(`${this.apiURL}/api/updateProfile`, data);
     }
