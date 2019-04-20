@@ -19,8 +19,14 @@
                                 <img [src]="this.selectedFile.src"
                                     class="figure-img img-fluid img-thumbnail z-depth-1 waves-light benefitImg"
                                     alt="Benefit Image">
-                                <figcaption class="figure-caption">Imagen del beneficio</figcaption>
+                                <figcaption class="figure-caption">
+                                    Imagen del beneficio
+                                    <div class="text-danger" *ngIf="addBenefitForm.controls.baseImg.invalid">
+                                        Selecciona al menos una imagen.</div>
+                                </figcaption>
                             </figure>
+
+
 
                             <a>
                                 <div class="mask waves-effect waves-light rgba-white-slight" mdbWavesEffect></div>
@@ -28,13 +34,19 @@
                         </div>
 
                     </label>
-                    <input #imageBenefit type="file" name="imgBenefit" id="inputImg" accept="image/*" (change)="processFile(imageBenefit)">
+                    <input #imageBenefit type="file" name="imgBenefit" id="inputImg" accept="image/*"
+                        (change)="processFile(imageBenefit)" formControlName="baseImg">
+
                 </div>
 
                 <div class="md-form md-outline">
                     <mdb-icon fas icon="gift" class="text-warning" size="lg"></mdb-icon>
-                    <input type="text" id="titleBenefit" class="form-control" formControlName="title" mdbInput>
+                    <input mdbInput mdbValidate type="text" id="titleBenefit" class="form-control"
+                        formControlName="title">
                     <label for="titleBenefit">Nombre Beneficio</label>
+                    <mdb-error
+                        *ngIf="addBenefitForm.controls.title.invalid && (addBenefitForm.controls.title.dirty || addBenefitForm.controls.title.touched)">
+                        Requerido. Máximo 30 caracteres.</mdb-error>
                 </div>
 
 
@@ -43,12 +55,18 @@
                     <textarea type="text" id="description" class="md-textarea md-textarea-auto form-control"
                         formControlName="description" rows="2" style="height: 500px;" mdbInput></textarea>
                     <label for="description">Descripción</label>
+                    <mdb-error
+                        *ngIf="addBenefitForm.controls.description.invalid && (addBenefitForm.controls.description.dirty || addBenefitForm.controls.description.touched)">
+                        Requerido. Máximo 200 caracteres.</mdb-error>
                 </div>
 
                 <div class="md-form md-outline">
                     <mdb-icon fas icon="dollar-sign" class="text-success" size="lg"></mdb-icon>
                     <input type="number" id="priceBenefit" class="form-control" formControlName="price" mdbInput>
                     <label for="priceBenefit">Precio</label>
+                    <mdb-error
+                        *ngIf="addBenefitForm.controls.price.invalid && (addBenefitForm.controls.price.dirty || addBenefitForm.controls.price.touched)">
+                        Requerido. Ingrese un precio.</mdb-error>
                 </div>
 
 
@@ -57,23 +75,20 @@
                     <mdb-icon far icon="calendar-alt" class="text-danger mr-4"></mdb-icon>
                     <input mdbInput class="form-control" type="date" aria-describedby="helpBlockExpiration"
                         formControlName="expiration">
-                    <small id="helpBlockExpiration" class="form-text text-muted mb-4">
+                    <small id="helpBlockExpiration" class="form-text text-muted mt-3">
                         Vencimiento del beneficio.
                     </small>
+                    <mdb-error class="mb-3"
+                        *ngIf="addBenefitForm.controls.expiration.invalid && (addBenefitForm.controls.expiration.dirty || addBenefitForm.controls.expiration.touched)">
+                        Ingrese una fecha.</mdb-error>
                 </div>
 
 
                 <div class="md-form">
-                    <hr class="hr-light">
-                    <button mdbBtn type="submit" gradient="aqua" block="true" mdbWavesEffect>Agregar Beneficio</button>
+                    <hr class="bg-info">
+                    <button mdbBtn type="submit" gradient="aqua" block="true" [disabled]="!addBenefitForm.valid"
+                        mdbWavesEffect>Agregar Beneficio</button>
                 </div>
-
-                <hr>
-                <pre>Valor del formulario: {{ addBenefitForm.value | json }}</pre>
-                <pre>Status del formulario: {{ addBenefitForm.status | json }}</pre>
-                <hr>
-                <pre>{{ benefitData | json }}</pre>
-
             </form>
 
         </div>
@@ -109,7 +124,8 @@
 
 
                             <div class="text-center mb-3">
-                                <button mdbBtn type="button" color="info" outline="true" block="true" size="lg" mdbWavesEffect> Canjear! </button>
+                                <button mdbBtn type="button" color="info" outline="true" block="true" size="lg"
+                                    mdbWavesEffect> Canjear! </button>
                                 <hr>
                             </div>
 

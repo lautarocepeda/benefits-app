@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ImageSnippet } from 'src/app/models/image-snippet';
 import { ImageUploadService } from 'src/app/service/image-upload.service';
 import { BackendApiService } from 'src/app/service/backend-api.service';
@@ -23,7 +23,12 @@ export class AddbenefitComponent implements OnInit {
     onSubmit() {
         this.benefitData = this.saveBenefit();
 
-        this.BackendApi.createBenefit(this.benefitData).subscribe(
+        this.addBenefit(this.benefitData);
+    }
+
+
+    addBenefit(data) {
+        this.BackendApi.createBenefit(data).subscribe(
             (res) => {
                 this.onSuccess();
                 console.log(res);
@@ -34,8 +39,6 @@ export class AddbenefitComponent implements OnInit {
                 console.error(err);
             }
         );
-
-
     }
 
 
@@ -54,11 +57,11 @@ export class AddbenefitComponent implements OnInit {
 
     ngOnInit() {
         this.addBenefitForm = this.pf.group({
-            title: '',
-            baseImg: '',
-            description: '',
-            price: '0',
-            expiration: '',
+            title: ['', [Validators.required, Validators.maxLength(30)]],
+            baseImg: ['', [Validators.required]],
+            description: ['', [Validators.required, Validators.maxLength(400)]],
+            price: ['0',[Validators.required, Validators.min(1)]],
+            expiration: ['',[Validators.required]],
         });
     }
 
