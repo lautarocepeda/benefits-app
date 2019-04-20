@@ -19,10 +19,11 @@ export class ImageUploadService {
     }
 
 
-    upload(image: File): Observable<any> {
+    upload(image: File, type: string): Observable<any> {
         const formData = new FormData();
         formData.append('imageInput', image);
         formData.append('token', this.currentUser.token);
+        formData.append('type', type);
 
         return this.httpClient.post(`${this.apiURL}/api/upload`, formData);
     }

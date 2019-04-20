@@ -36,4 +36,8 @@ export class BackendApiService {
         return this.httpClient.get(`${this.apiURL}/api/profile`, this.httpOptions);
     }
 
+    public createBenefit(data: any) {
+        return this.httpClient.post(`${this.apiURL}/api/createbenefit`, data);
+    }
+
 }

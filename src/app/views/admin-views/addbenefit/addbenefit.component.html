@@ -16,7 +16,7 @@
 
                         <div class="view overlay">
                             <figure class="figure">
-                                <img src="assets/admin/default-benefit.jpg"
+                                <img [src]="this.selectedFile.src"
                                     class="figure-img img-fluid img-thumbnail z-depth-1 waves-light benefitImg"
                                     alt="Benefit Image">
                                 <figcaption class="figure-caption">Imagen del beneficio</figcaption>
@@ -28,7 +28,7 @@
                         </div>
 
                     </label>
-                    <input #imageBenefit type="file" name="imgBenefit" id="inputImg" accept="image/*">
+                    <input #imageBenefit type="file" name="imgBenefit" id="inputImg" accept="image/*" (change)="processFile(imageBenefit)">
                 </div>
 
                 <div class="md-form md-outline">
@@ -94,7 +94,7 @@
                     <mdb-card>
 
 
-                        <mdb-card-img src="assets/admin/default-benefit.jpg" alt="Card image cap"></mdb-card-img>
+                        <mdb-card-img [src]="this.selectedFile.src" alt="Card image cap"></mdb-card-img>
 
                         <mdb-card-body>
                             <mdb-card-title>

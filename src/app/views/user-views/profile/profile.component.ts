@@ -178,7 +178,7 @@ export class ProfileComponent implements OnInit {
             this.selectedFile = new ImageSnippet(event.target.result, file);
             this.selectedFile.pending = true;
 
-            this.ImageService.upload(this.selectedFile.file).subscribe(
+            this.ImageService.upload(this.selectedFile.file, 'profile').subscribe(
                 (res) => {
                     this.onSuccess();
                     console.log(res);
