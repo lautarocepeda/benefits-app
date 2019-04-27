@@ -25,7 +25,7 @@ export class ImageUploadService {
         formData.append('token', this.currentUser.token);
         formData.append('type', type);
 
-        return this.httpClient.post(`${this.apiURL}/api/upload`, formData);
+        return this.httpClient.post(`${this.apiURL}/api/profile/img/upload`, formData);
     }
 
 

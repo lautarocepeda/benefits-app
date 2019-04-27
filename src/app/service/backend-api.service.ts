@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Register } from '../models/register';
 import { Observable } from 'rxjs';
 import { UpdateUser } from '../interfaces/update-user';
+import { Benefit } from '../models/benefit';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BackendApiService {
 
-    private apiURL: string = "http://localhost:4000";
+    public apiURL: string = "http://localhost:4000";
 
     private httpOptions = {
         headers: new HttpHeaders({
@@ -17,6 +18,8 @@ export class BackendApiService {
             'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         })
     };
+
+    
 
 
     constructor(private httpClient: HttpClient) {}
@@ -28,7 +31,7 @@ export class BackendApiService {
 
 
     public updateProfile(data: UpdateUser) {
-        return this.httpClient.post(`${this.apiURL}/api/updateProfile`, data);
+        return this.httpClient.put(`${this.apiURL}/api/profile/update`, data);
     }
 
 
@@ -36,8 +39,14 @@ export class BackendApiService {
         return this.httpClient.get(`${this.apiURL}/api/profile`, this.httpOptions);
     }
 
+
+    public getBenefits(): Observable<Benefit[]> {
+        return this.httpClient.get<Benefit[]>(`${this.apiURL}/api/benefits`);
+    }
+
+
     public createBenefit(data: any) {
-        return this.httpClient.post(`${this.apiURL}/api/createbenefit`, data);
+        return this.httpClient.post(`${this.apiURL}/api/benefits/create`, data);
     }
 
 }

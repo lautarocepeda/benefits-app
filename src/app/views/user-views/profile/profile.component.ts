@@ -32,7 +32,9 @@ export class ProfileComponent implements OnInit {
     // information user
     protected userData: any = {
         id: null,
+        provider: null,
         name: null,
+        gender: null,
         email: null,
         birthday: null,
         urlImg: '',
@@ -69,6 +71,7 @@ export class ProfileComponent implements OnInit {
 
         this.editForm = this.rf.group({
             editFormName: ['', Validators.required],
+            editFormGender: ['', Validators.required],
             editFormEmail: ['', [Validators.required, Validators.email]],
             editFormBirthday: ['', [Validators.required]],
             passwordForm: this.passwordForm,
@@ -79,6 +82,7 @@ export class ProfileComponent implements OnInit {
 
     private loadFormEdit() {
         this.editForm.get('editFormName').setValue(this.userData.name);
+        this.editForm.get('editFormGender').setValue(this.userData.gender);
         this.editForm.get('editFormEmail').setValue(this.userData.email);
         this.editForm.get('editFormBirthday').setValue(this.userData.birthday);
     }
@@ -88,6 +92,7 @@ export class ProfileComponent implements OnInit {
         // information user to update
         const userUpdate: UpdateUser = {
             name: this.editForm.get('editFormName').value,
+            gender: this.editForm.get('editFormGender').value,
             email: this.editForm.get('editFormEmail').value,
             birthday: this.editForm.get('editFormBirthday').value,
             password: this.passwordForm.get('registerFormConfirmPassword').value,
@@ -158,12 +163,19 @@ export class ProfileComponent implements OnInit {
         this.BackendApi.getProfile().subscribe((response: any) => {
             this.userData = {
                 id: response.user.id,
+                provider: response.user.oauth_provider,
                 name: response.user.name,
+                gender: response.user.gender,
                 email: response.user.email,
                 birthday: response.user.birthday,
-                urlImg: this._sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,'
-                    + response.baseImg) || '/assets/profileImg_default.jpg'
             };
+
+            if(response.baseImg) {
+                this.userData.urlImg = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + response.baseImg);
+            } else {
+                this.userData.urlImg = '/assets/profileImg_default.jpg';
+            }
+
         });
     }
 

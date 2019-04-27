@@ -33,6 +33,7 @@ import { AuthorizatedGuard } from './guards/authorizated.guard';
 import { MainComponent } from './views/main/main.component';
 import { BenefitComponent } from './views/admin-views/benefit/benefit.component';
 import { AddbenefitComponent } from './views/admin-views/addbenefit/addbenefit.component';
+import { GenderPipe } from './pipes/gender.pipe';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AddbenefitComponent } from './views/admin-views/addbenefit/addbenefit.c
     MainComponent,
     ProfileComponent,
     BenefitComponent,
-    AddbenefitComponent
+    AddbenefitComponent,
+    GenderPipe
   ],
   imports: [
     BrowserModule,

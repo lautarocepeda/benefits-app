@@ -32,7 +32,6 @@ export class AuthenticationService {
     public signin(data: Login) {
         return this.httpClient.post<User>(`${this.apiURL}/auth/signin`, data)
             .pipe(tap(user => {
-
                 if (user && user.token) {
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
@@ -59,5 +58,22 @@ export class AuthenticationService {
         }))
     }
 
+
+    public signinFacebook(token: string) {
+        this.httpClient.post(`${this.apiURL}/fb_signin`, { 'fb_token': token }).subscribe(
+            (user: any) => {
+
+                if (user && user.token) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                }
+
+                return user;
+            },
+            (err) => {
+                console.log(err);
+            }
+        )
+    }
 
 }

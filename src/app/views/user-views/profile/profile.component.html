@@ -52,6 +52,15 @@
                 </li>
 
                 <li class="list-group-item d-flex align-items-center">
+                    <mdb-icon fas icon="transgender" class="text-secondary" size="2x"></mdb-icon>
+                    <h3>
+                        <span class="badge badge-default badge-pill ml-5">
+                            {{ userData.gender | gender }}
+                        </span>
+                    </h3>
+                </li>
+
+                <li class="list-group-item d-flex align-items-center" *ngIf="userData.provider === 'app'">
                     <mdb-icon fas icon="lock" class="text-warning" size="2x"></mdb-icon>
                     <h3>
                         <span class="badge badge-default badge-pill ml-5">
@@ -59,6 +68,14 @@
                         </span>
                     </h3>
                 </li>
+
+                <li class="list-group-item d-flex align-items-center" *ngIf="userData.provider === 'facebook'">
+                    <mdb-icon fas icon="user-tag" class="text-warning" size="2x"></mdb-icon>
+                    <h3>
+                        <mdb-icon fab icon="facebook" class="text-info ml-4" size="lg"></mdb-icon>
+                    </h3>
+                </li>
+
                 <li class="list-group-item d-flex justify-content-center">
                     <button type="button" class="btn btn-outline-elegant btn-sm waves-effect"
                         (click)="activeModeEdit(true)">
@@ -80,6 +97,18 @@
                             <i class="fas fa-user prefix white-text"></i>
                             <input mdbInput type="text" class="form-control" formControlName="editFormName">
                             <label for="editFormName">Nombre</label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item d-flex align-items-center">
+
+                        <mdb-icon fas icon="transgender" class="text-secondary mr-4" size="2x"></mdb-icon>
+                        <!-- Gender -->
+                        <div class="md-form md-outline mb-0">
+                            <select class="browser-default custom-select" formControlName="editFormGender">
+                                <option value="male">Hombre</option>
+                                <option value="female">Mujer</option>
+                            </select>
                         </div>
                     </li>
 
@@ -122,7 +151,7 @@
                     </li>
                 </ul>
 
-                <div [formGroup]="passwordForm">
+                <div [formGroup]="passwordForm" *ngIf="userData.provider === 'app'">
 
                     <ul class="list-group list-group-flush" *ngIf="modeEdit">
 
@@ -220,25 +249,23 @@
                             </a>
                         </label>
 
-                        <input #imageInput id="file-input" type="file"
-                            (change)="this.processFile(imageInput)" accept="image/*" required>
+                        <input #imageInput id="file-input" type="file" (change)="this.processFile(imageInput)"
+                            accept="image/*" required>
 
                         <div *ngIf="this.selectedFile" class="img-preview-container">
                             <div *ngIf="this.selectedFile.pending" class="img-loading-overlay">
                                 <div class="img-spinning-circle"></div>
                             </div>
 
-                            <div *ngIf="this.selectedFile.status === 'ok'" class="alert alert-info"
-                                role="alert">
+                            <div *ngIf="this.selectedFile.status === 'ok'" class="alert alert-info" role="alert">
                                 Imagen subida:
                                 <img class="img-fluid" [src]="this.selectedFile.src" />
                             </div>
 
-                            <div *ngIf="this.selectedFile.status === 'ok'"
-                                class="alert alert-success"> Image Uploaded
+                            <div *ngIf="this.selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded
                                 Succesfuly!</div>
-                            <div *ngIf="this.selectedFile.status === 'fail'"
-                                class="alert alert-danger"> Image Upload Failed!
+                            <div *ngIf="this.selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload
+                                Failed!
                             </div>
                         </div>
                     </div>

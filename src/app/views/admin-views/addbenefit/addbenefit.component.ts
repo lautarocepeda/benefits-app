@@ -60,8 +60,8 @@ export class AddbenefitComponent implements OnInit {
             title: ['', [Validators.required, Validators.maxLength(30)]],
             baseImg: ['', [Validators.required]],
             description: ['', [Validators.required, Validators.maxLength(400)]],
-            price: ['0',[Validators.required, Validators.min(1)]],
-            expiration: ['',[Validators.required]],
+            price: ['0', [Validators.required, Validators.min(1)]],
+            expiration: ['', [Validators.required]],
         });
     }
 
@@ -71,12 +71,21 @@ export class AddbenefitComponent implements OnInit {
             const file: File = imgInput.files[0];
             const reader = new FileReader();
 
-            reader.readAsDataURL(file);
 
-            reader.addEventListener('load', (event: any) => {
-                this.selectedFile = new ImageSnippet(event.target.result, file);
-                this.selectedFile.pending = true;
-            });
+            if (file.type === 'image/jpeg' ||
+                file.type === 'image/png' ||
+                file.type === 'image/jpg') {
+                reader.readAsDataURL(file);
+
+                reader.addEventListener('load', (event: any) => {
+                    this.selectedFile = new ImageSnippet(event.target.result, file);
+                    this.selectedFile.pending = true;
+                });
+
+            } else {
+                alert('invalid format.');
+            }
+
         }
     }
 

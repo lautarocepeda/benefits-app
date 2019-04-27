@@ -4,6 +4,7 @@ import { Role } from '../models/role';
 export interface User {
     id: number;
     name: string;
+    gender: string;
     email: string;
     birthday: number;
     urlImg: SafeResourceUrl;

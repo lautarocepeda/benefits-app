@@ -53,16 +53,17 @@
                 <div class="md-form md-outline">
                     <mdb-icon fas icon="pencil-alt text-primary" size="lg"></mdb-icon>
                     <textarea type="text" id="description" class="md-textarea md-textarea-auto form-control"
-                        formControlName="description" rows="2" style="height: 500px;" mdbInput></textarea>
+                        formControlName="description" rows="2" style="height: 500px;" mdbInput mdbValidate></textarea>
                     <label for="description">Descripción</label>
                     <mdb-error
                         *ngIf="addBenefitForm.controls.description.invalid && (addBenefitForm.controls.description.dirty || addBenefitForm.controls.description.touched)">
-                        Requerido. Máximo 200 caracteres.</mdb-error>
+                        Requerido. Máximo 400 caracteres.</mdb-error>
                 </div>
 
                 <div class="md-form md-outline">
                     <mdb-icon fas icon="dollar-sign" class="text-success" size="lg"></mdb-icon>
-                    <input type="number" id="priceBenefit" class="form-control" formControlName="price" mdbInput>
+                    <input type="number" id="priceBenefit" class="form-control" formControlName="price" mdbInput
+                        mdbValidate>
                     <label for="priceBenefit">Precio</label>
                     <mdb-error
                         *ngIf="addBenefitForm.controls.price.invalid && (addBenefitForm.controls.price.dirty || addBenefitForm.controls.price.touched)">
@@ -70,10 +71,10 @@
                 </div>
 
 
-                <div class="md-form">
+                <div class="md-form md-outline">
                     <!-- Date -->
                     <mdb-icon far icon="calendar-alt" class="text-danger mr-4"></mdb-icon>
-                    <input mdbInput class="form-control" type="date" aria-describedby="helpBlockExpiration"
+                    <input mdbInput mdbValidate class="form-control" type="date" aria-describedby="helpBlockExpiration"
                         formControlName="expiration">
                     <small id="helpBlockExpiration" class="form-text text-muted mt-3">
                         Vencimiento del beneficio.
