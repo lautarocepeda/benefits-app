@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../service/authentication.service';
 
 
@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
     
     logout() {
         console.log("[USER] logout")
+        // App signout
         return this.AuthService.logout();
     }
 

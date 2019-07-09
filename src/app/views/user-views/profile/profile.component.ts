@@ -170,7 +170,7 @@ export class ProfileComponent implements OnInit {
                 birthday: response.user.birthday,
             };
 
-            if(response.baseImg) {
+            if (response.baseImg) {
                 this.userData.urlImg = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + response.baseImg);
             } else {
                 this.userData.urlImg = '/assets/profileImg_default.jpg';

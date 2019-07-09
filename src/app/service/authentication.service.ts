@@ -1,15 +1,16 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Login } from '../models/login';
 import { tap, map } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/User';
+import { AuthService } from 'angularx-social-login';
 
 @Injectable({
     providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthenticationService{
 
     private apiURL: string = "http://localhost:4000";
 
@@ -17,9 +18,10 @@ export class AuthenticationService {
     public currentUser: Observable<User>;
 
 
-    constructor(private httpClient: HttpClient, private router: Router) {
+    constructor(private httpClient: HttpClient, private router: Router, private socialAuthService: AuthService) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
+
     }
 
 
@@ -44,18 +46,28 @@ export class AuthenticationService {
 
 
     public logout() {
+        // Facebook signout
+        this.socialAuthService.signOut();
+
         //remove user from localStorage
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+
 
         this.router.navigate(['']);
     }
 
 
     public validateToken(token: string) {
-        return this.httpClient.post(`${this.apiURL}/validate_token`, { 'token': token }).pipe(map(res => {
-            return res;
-        }))
+        this.httpClient.post(`${this.apiURL}/validate_token`, { 'token': token }).subscribe(
+            (res: any) => {
+                //console.log("user log in!");
+            },
+            (err:any) => {
+                //token invalid, need to re-login.
+                this.logout();
+            }
+        )
     }
 
 

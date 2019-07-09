@@ -1,0 +1,119 @@
+<div class="row mx-1 justify-content-center mt-5">
+
+
+    <div class="col-12">
+        <div class="jumbotron sunny-morning-gradient">
+
+            <div class="row justify-content-center">
+                <div class="col-md-4 col-lg-4 col-sm-12" *ngFor="let coupon of pagedItems">
+                    <div class="card-deck animated zoomInDown">
+
+                        <!-- Card -->
+                        <mdb-card>
+
+                            <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                                <mdb-card-img
+                                    [src]="BackendApi.apiURL + '/benefits/' + findBenefit(coupon.benefit_id).imgPath"
+                                    alt="Benefit Image">
+                                </mdb-card-img>
+                                <a>
+                                    <div class="mask"></div>
+                                </a>
+                            </div>
+
+                            <mdb-card-body>
+                                <mdb-card-title>
+                                    <h4> {{ findBenefit(coupon.benefit_id).title }} </h4>
+                                    <hr>
+                                </mdb-card-title>
+
+                                <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+                                    <mdb-card-text>
+                                        <mdb-card-img
+                                            [src]="this._sanitizer.bypassSecurityTrustResourceUrl(coupon.qrImg)"
+                                            alt="Benefit Image">
+                                        </mdb-card-img>
+                                    </mdb-card-text>
+                                </div>
+                                <hr>
+
+                                <mdb-card-title>
+                                    <button mdbBtn type="button" gradient="purple" outline="true" block="true" size="lg"
+                                        mdbWavesEffect>
+                                        {{ coupon.code }}
+                                    </button>
+                                    <hr>
+                                </mdb-card-title>
+
+                                <div class="d-flex justify-content-center text-info">
+                                    <h5 class="waves-light text-success" mdbWavesEffect>Precio
+                                        <span>
+                                            <mdb-icon fas icon="chevron-right" size="lg"></mdb-icon>
+                                            $ {{ findBenefit(coupon.benefit_id).price }}
+                                        </span>
+                                        <hr>
+                                    </h5>
+                                </div>
+
+                                <div class="d-flex justify-content-end text-info">
+                                    <strong class="waves-light text-danger" mdbWavesEffect>Vencimiento
+                                        <span>
+                                            <mdb-icon fas icon="chevron-right" size="sm"></mdb-icon>
+                                            {{ coupon.expiration | date }}
+                                        </span>
+                                    </strong>
+                                </div>
+
+                            </mdb-card-body>
+
+                        </mdb-card>
+                        <!-- Card -->
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+
+            <div class="br justify-content-center center mt-5">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <nav>
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination pagination-circle pg-teal">
+                            <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)" class="page-link" mdbWavesEffect>Primera</a>
+                            </li>
+                            <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)" class="page-link" aria-label="Previous"
+                                    mdbWavesEffect>
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Anterior</span>
+                                </a>
+                            </li>
+                            <li class="page-item active" *ngFor="let page of pager.pages"
+                                [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="setPage(page)" class="page-link" mdbWavesEffect>{{page}}</a>
+                            </li>
+                            <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)" class="page-link" aria-label="Next"
+                                    mdbWavesEffect>
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Siguiente</span>
+                                </a>
+                            </li>
+                            <li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)" class="page-link" mdbWavesEffect>Última</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

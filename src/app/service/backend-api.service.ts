@@ -20,8 +20,6 @@ export class BackendApiService {
     };
 
     
-
-
     constructor(private httpClient: HttpClient) {}
 
     //Register user
@@ -34,6 +32,10 @@ export class BackendApiService {
         return this.httpClient.put(`${this.apiURL}/api/profile/update`, data);
     }
 
+    public getUsers() {
+        return this.httpClient.get(`${this.apiURL}/api/users`);
+    }
+
 
     public getProfile() {
         return this.httpClient.get(`${this.apiURL}/api/profile`, this.httpOptions);
@@ -44,9 +46,30 @@ export class BackendApiService {
         return this.httpClient.get<Benefit[]>(`${this.apiURL}/api/benefits`);
     }
 
+    public getBenefit(id:number) {
+        return this.httpClient.get<Benefit>(`${this.apiURL}/api/benefit/` + id);
+    }
+
+
+    public getMyCoupons(): Observable<Benefit> {
+        return this.httpClient.get<Benefit>(`${this.apiURL}/api/coupons`);
+    }
+
 
     public createBenefit(data: any) {
         return this.httpClient.post(`${this.apiURL}/api/benefits/create`, data);
     }
+
+
+    public redeemBenefit(benefitId: object) {
+        return this.httpClient.post(`${this.apiURL}/api/benefits/exchange`, benefitId);
+    }
+
+
+    public verifyCode(code: any) {
+        return this.httpClient.get(`${this.apiURL}/api/benefit/verify`, { params: {"code" : code} } );
+    }
+
+
 
 }

@@ -70,21 +70,6 @@
                         Requerido. Ingrese un precio.</mdb-error>
                 </div>
 
-
-                <div class="md-form md-outline">
-                    <!-- Date -->
-                    <mdb-icon far icon="calendar-alt" class="text-danger mr-4"></mdb-icon>
-                    <input mdbInput mdbValidate class="form-control" type="date" aria-describedby="helpBlockExpiration"
-                        formControlName="expiration">
-                    <small id="helpBlockExpiration" class="form-text text-muted mt-3">
-                        Vencimiento del beneficio.
-                    </small>
-                    <mdb-error class="mb-3"
-                        *ngIf="addBenefitForm.controls.expiration.invalid && (addBenefitForm.controls.expiration.dirty || addBenefitForm.controls.expiration.touched)">
-                        Ingrese una fecha.</mdb-error>
-                </div>
-
-
                 <div class="md-form">
                     <hr class="bg-info">
                     <button mdbBtn type="submit" gradient="aqua" block="true" [disabled]="!addBenefitForm.valid"
@@ -140,15 +125,6 @@
                                     </span>
                                     <hr>
                                 </h5>
-                            </div>
-
-                            <div class="d-flex justify-content-end text-info">
-                                <strong class="waves-light text-danger" mdbWavesEffect>Vencimiento
-                                    <span>
-                                        <mdb-icon fas icon="chevron-right" size="sm"></mdb-icon>
-                                        {{ addBenefitForm.controls.expiration.value | date }}
-                                    </span>
-                                </strong>
                             </div>
 
                         </mdb-card-body>

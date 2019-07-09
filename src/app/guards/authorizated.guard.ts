@@ -18,8 +18,15 @@ export class AuthorizatedGuard implements CanActivate {
 
         const currentUser = this.AuthService.currentUserValue;
 
-        
+    
         if (currentUser) {
+
+            let token = JSON.parse(localStorage.getItem('currentUser'))['token'];
+
+            if (token) {
+                this.AuthService.validateToken(token);
+            }
+
             // check if route is restricted by role
             if(route.data.roles && route.data.roles.indexOf(currentUser.role) === -1) {
                 this.router.navigate(['/']);

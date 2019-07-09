@@ -25,7 +25,7 @@
         <small class="text-danger" *ngIf="loginForm.get('loginFormPassword').errors?.invalid">
             Contraseña Incorrecta.
         </small>
-        
+
         <div class="text-right">
             <!-- Forgot password -->
             <a href="">Olvidaste tu contraseña?</a>
@@ -42,19 +42,15 @@
         <hr class="hr-light mb-3 mt-4">
 
         <!-- Social Sign Up -->
-        <div class="row mt-2 mb-3 d-flex justify-content-center">
+        <div class="row mt-2 mb-3 d-flex justify-content-center ">
             <!--Facebook-->
-            <a class="fa-lg p-2 m-2 fb-ic" (click)="loginFacebook()">
-                <mdb-icon fab icon="facebook" size="lg" class="white-text"></mdb-icon>
+            <a mdbBtn (click)="loginFacebook()" class="animated bounceInLeft" role="button" gradient="aqua" block="true"
+                size="lg" class="active" aria-pressed="true" mdbWavesEffect>
+                Ingresar con
+                <mdb-icon fab class="right" icon="facebook" size="lg"></mdb-icon>
             </a>
-            <!--Twitter-->
-            <a class="fa-lg p-2 m-2 tw-ic">
-                <mdb-icon fab icon="instagram" size="lg" class="white-text"></mdb-icon>
-            </a>
-            <!--Google +-->
-            <a class="fa-lg p-2 m-2 gplus-ic">
-                <mdb-icon fab fab icon="twitter" size="lg" class="white-text"></mdb-icon>
-            </a>
+
+
         </div>
 
 

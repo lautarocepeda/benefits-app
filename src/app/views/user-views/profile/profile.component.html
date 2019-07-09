@@ -258,15 +258,11 @@
                             </div>
 
                             <div *ngIf="this.selectedFile.status === 'ok'" class="alert alert-info" role="alert">
-                                Imagen subida:
                                 <img class="img-fluid" [src]="this.selectedFile.src" />
                             </div>
 
-                            <div *ngIf="this.selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded
-                                Succesfuly!</div>
-                            <div *ngIf="this.selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload
-                                Failed!
-                            </div>
+                            <div *ngIf="this.selectedFile.status === 'ok'" class="alert alert-success">Imagen subida correctamente!</div>
+                            <div *ngIf="this.selectedFile.status === 'fail'" class="alert alert-danger"> Ups! Algo anda mal...</div>
                         </div>
                     </div>
 

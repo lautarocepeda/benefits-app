@@ -31,12 +31,13 @@ export class AddbenefitComponent implements OnInit {
         this.BackendApi.createBenefit(data).subscribe(
             (res) => {
                 this.onSuccess();
-                console.log(res);
+                alert("Beneficio agregado correctamente.");
+                this.addBenefitForm.reset();
 
             },
             (err) => {
                 this.onError();
-                console.error(err);
+                alert("Ocurrió un error, intenta de nuevo...");
             }
         );
     }
@@ -47,8 +48,7 @@ export class AddbenefitComponent implements OnInit {
             title: this.addBenefitForm.get('title').value,
             baseImg: this.selectedFile.src,
             description: this.addBenefitForm.get('description').value,
-            price: this.addBenefitForm.get('price').value,
-            expiration: this.addBenefitForm.get('expiration').value
+            price: this.addBenefitForm.get('price').value
         };
 
         return saveBenefit;
@@ -60,8 +60,7 @@ export class AddbenefitComponent implements OnInit {
             title: ['', [Validators.required, Validators.maxLength(30)]],
             baseImg: ['', [Validators.required]],
             description: ['', [Validators.required, Validators.maxLength(400)]],
-            price: ['0', [Validators.required, Validators.min(1)]],
-            expiration: ['', [Validators.required]],
+            price: ['0', [Validators.required, Validators.min(1)]]
         });
     }
 
@@ -72,9 +71,9 @@ export class AddbenefitComponent implements OnInit {
             const reader = new FileReader();
 
 
-            if (file.type === 'image/jpeg' ||
-                file.type === 'image/png' ||
-                file.type === 'image/jpg') {
+            if (file.type === 'image/jpeg' 
+                || file.type === 'image/png' 
+                || file.type === 'image/jpg') {
                 reader.readAsDataURL(file);
 
                 reader.addEventListener('load', (event: any) => {
@@ -83,7 +82,7 @@ export class AddbenefitComponent implements OnInit {
                 });
 
             } else {
-                alert('invalid format.');
+                alert('Invalid format.');
             }
 
         }

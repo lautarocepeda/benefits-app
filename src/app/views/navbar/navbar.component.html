@@ -1,7 +1,7 @@
 <!--Main Navigation-->
 <header>
     <!-- Sidebar -->
-    <div class="sidebar-fixed position-fixed animated slideInLeft">
+    <div class="sidebar-fixed position-fixed animated slideInLeft bg">
 
         <a class="logo-wrapper waves-effect">
             <img src="http://clipart-library.com/images/5TRrpRAGc.png" class="img-fluid" alt="">
@@ -13,15 +13,16 @@
                 <mdb-icon fas icon="home" class="mr-3" size="lg"></mdb-icon>
                 HOME
             </a>
-            <a routerLink="/sd" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+            <a routerLink="/benefits" routerLinkActive="active"
+                class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="ticket-alt" class="mr-3" size="lg"></mdb-icon>
                 BENEFICIOS
             </a>
-            <a routerLink="/sd" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+            <a routerLink="/home" class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="map-marker-alt" class="mr-3" size="lg"></mdb-icon>
                 LOCALES
             </a>
-            <a routerLink="/sd" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+            <a routerLink="/home" class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="utensils" class="mr-3" size="lg"></mdb-icon>
                 MENU
             </a>
@@ -30,7 +31,8 @@
                 <mdb-icon fas icon="user" class="mr-3" size="lg"></mdb-icon>
                 MI PERFIL
             </a>
-            <a routerLink="/sd" routerLinkActive="active" class="list-group-item list-group-item-action waves-effect">
+            <a routerLink="/mycoupons" routerLinkActive="active"
+                class="list-group-item list-group-item-action waves-effect">
                 <mdb-icon fas icon="heart" class="mr-3" size="lg"></mdb-icon>
                 MIS CUPONES
             </a>
@@ -49,7 +51,6 @@
             <mdb-icon fab icon="instagram" size="lg"></mdb-icon>
         </button>
 
-
     </div>
     <!-- Sidebar -->
 
@@ -57,13 +58,18 @@
     <!-- USER AUHTENTICATED -->
     <!--Navbar-->
     <mdb-navbar [containerInside]="false"
-        SideClass="navbar navbar-expand-lg navbar-light white z-depth-2 cloudy-knoxville-gradient animated slideInDown"
-        *ngIf="userIsLoggin">
+        SideClass="navbar navbar-expand-lg navbar-light white z-depth-2 animated slideInDown" *ngIf="userIsLoggin">
 
         <!-- Navbar brand -->
         <logo class="ml-3">
             <a class="navbar-brand">
-                <strong class="blue-text">APP</strong>
+                <strong class="blue-text" *ngIf="this.userIsLoggin.role === 'User'">
+                    APP
+                </strong>
+                <strong class="blue-text" *ngIf="this.userIsLoggin.role === 'Admin'">
+                    ADMIN PANEL
+                    <mdb-icon fas icon="chevron-right" size="lg" class="right ml-2"></mdb-icon>
+                </strong>
             </a>
         </logo>
 
@@ -74,10 +80,67 @@
             <ul class="navbar-nav mr-auto">
                 <div class="navbar-nav mr-auto" *ngIf="this.userIsLoggin.role === 'Admin'">
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="administration/benefit" routerLinkActive="active">Beneficios</a>
+                        <a class="nav-link waves-light" routerLink="administration/users" routerLinkActive="active"
+                            mdbWavesEffect>Usuarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="administration/benefit/add" routerLinkActive="active">Agregar Beneficio</a>
+                        <a class="nav-link waves-light" routerLink="administration/benefit/add"
+                            routerLinkActive="active" mdbWavesEffect>
+                            Agregar Beneficio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" routerLink="administration/verify" routerLinkActive="active"
+                            mdbWavesEffect>
+                            Verificar Cupón</a>
+                    </li>
+                </div>
+
+                <!-- USER MENU MOBILE -->
+                <div class="navbar-nav mr-auto d-block d-sm-none">
+                    <hr>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" routerLink="/home" routerLinkActive="active"
+                            mdbWavesEffect>
+                            <mdb-icon fas icon="home" class="mr-3" size="lg"></mdb-icon>
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" routerLink="/benefits"
+                            routerLinkActive="active" mdbWavesEffect>
+                            <mdb-icon fas icon="ticket-alt" class="mr-3" size="lg"></mdb-icon>
+                            Beneficios
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" routerLink="/home" routerLinkActive="active"
+                            mdbWavesEffect>
+                            <mdb-icon fas icon="map-marker-alt" class="mr-3" size="lg"></mdb-icon>
+                            Locales
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" routerLink="/home" routerLinkActive="active"
+                            mdbWavesEffect>
+                            <mdb-icon fas icon="utensils" class="mr-3" size="lg"></mdb-icon>
+                            Menu
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" routerLink="/profile" routerLinkActive="active"
+                            mdbWavesEffect>
+                            <mdb-icon fas icon="user" class="mr-3" size="lg"></mdb-icon>
+                            Mi Perfil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" routerLink="/mycoupons" routerLinkActive="active"
+                            mdbWavesEffect>
+                            <mdb-icon fas icon="heart" class="mr-3" size="lg"></mdb-icon>
+                            Mis Cupones
+                        </a>
                     </li>
                 </div>
             </ul>

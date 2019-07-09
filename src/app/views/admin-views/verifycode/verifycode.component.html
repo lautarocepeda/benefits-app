@@ -1,0 +1,72 @@
+<div class="row mx-1 justify-content-center mt-5">
+    <div class="col-10">
+
+
+
+        <div class="jumbotron peach-gradient">
+
+
+            <div class="row">
+                <div class="col-sm-6 mb-3 mb-md-0">
+                    <mdb-card>
+                        <mdb-card-body>
+
+                            <mdb-card-title>
+                                <h5>Ingresar Código</h5>
+                                <hr>
+                            </mdb-card-title>
+
+                            <mdb-card-text>
+                                Ingrese manualmente el código para verificarlo.
+                            </mdb-card-text>
+
+
+                            <form [formGroup]="formCode" (ngSubmit)="onSubmitFormCode()">
+                                <div class="md-form">
+                                    <input mdbInput mdbValidate type="text" class="form-control" formControlName="code">
+                                    <label for="code">Código Promocional</label>
+                                    <button mdbBtn type="submit" color="success" mdbWavesEffect
+                                        [disabled]="!formCode.valid">Verificar</button>
+                                </div>
+                            </form>
+
+
+                        </mdb-card-body>
+                    </mdb-card>
+                </div>
+
+
+                <div class="col-sm-6">
+                    <mdb-card>
+                        <mdb-card-body>
+                            <mdb-card-title>
+                                <h5>Escanear Código QR</h5>
+                                <hr>
+                            </mdb-card-title>
+
+                            <mdb-card-text>
+                                Pon el código QR sobre la cámara para poder escanearlo.
+                            </mdb-card-text>
+
+                            <button class="btn btn-info" (click)="scannerEnabled = true" *ngIf="!scannerEnabled">Activar
+                                QR
+                                Scanner</button>
+
+                            <zxing-scanner [enable]="scannerEnabled" (scanSuccess)="qrCodeResult($event)"
+                                (scanError)="scanErrorHandler($event)" *ngIf="scannerEnabled"> </zxing-scanner>
+
+                        </mdb-card-body>
+                    </mdb-card>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+</div>
