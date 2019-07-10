@@ -1,27 +1,29 @@
-# AppCv
+# Aplicación de Beneficios
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+Esta aplicación se encarga de gestionar cupones/descuentos de un comercio y que los clientes puedan hacer uso de ellos.
 
-## Development server
+### Demo
+https://mybenefits-app.herokuapp.com/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+###### Login
+![Login](https://i.ibb.co/LgLPMD0/chrome-2019-07-09-22-21-35.jpg "Login")
 
-## Code scaffolding
+###### Add Benefits
+![Add Benefits](https://i.ibb.co/WFQ4Nt1/chrome-2019-07-09-22-31-09.png "Add Benefits")
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+###### Verify Benefit
+![Verify Benefit](https://i.ibb.co/R2hgH3v/chrome-2019-07-09-22-41-09.png "Verify Benefit")
 
-## Build
+###### My Profile
+![My Profile](https://i.ibb.co/jkzGJQT/chrome-2019-07-09-22-33-09.png "My Profile")
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## El sistema cuenta con lo siguiente:
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Sistema de usuarios con roles (Administrador y Usuario).
+- Protección de rutas.
+- Autenticacion con JWToken.
+- Inicio de sesion mediante Facebook.
+- Generador y lector de codigos QR.
+- Generador de codigos unicos.
+- Subida de imágenes.
+- Modificación de datos.
