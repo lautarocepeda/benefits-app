@@ -5,6 +5,10 @@ Esta aplicación se encarga de gestionar cupones/descuentos de un comercio y que
 ### Demo
 https://mybenefits-app.herokuapp.com/
 
+## Usuario Admin
+Usuario: admin@admin.com
+Contraseña: admin1234
+
 ###### Login
 ![Login](https://i.ibb.co/LgLPMD0/chrome-2019-07-09-22-21-35.jpg "Login")
 
