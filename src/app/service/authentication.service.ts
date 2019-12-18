@@ -12,7 +12,7 @@ import { AuthService } from 'angularx-social-login';
 })
 export class AuthenticationService{
 
-    private apiURL: string = "http://localhost:4000";
+    private apiURL: string = "https://sv-benefits.herokuapp.com";
 
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
