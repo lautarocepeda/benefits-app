@@ -10,7 +10,7 @@ import { Benefit } from '../models/benefit';
 })
 export class BackendApiService {
 
-    public apiURL: string = "http://localhost:4000";
+    public apiURL: string = "https://sv-benefits.herokuapp.com";
 
     private httpOptions = {
         headers: new HttpHeaders({
