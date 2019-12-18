@@ -9,7 +9,7 @@ import { AuthenticationService } from './authentication.service';
 })
 export class ImageUploadService {
 
-    private apiURL: string = "http://localhost:4000";
+    private apiURL: string = "https://sv-benefits.herokuapp.com";
 
     // auth user
     private currentUser;
